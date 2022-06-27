@@ -1,0 +1,46 @@
+.login-dkdn {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.login-dkdn input {
+    width: 485px;
+    height: 45px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.login-dkdn button {
+    width: 150px;
+    height: 45px;
+    margin-bottom: 40px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.login-dkdn button:hover {
+    font-size: 15px;
+    opacity: 0.75;
+    color: #a73340;
+    ;
+}
+
+.login-dkdn a {
+    text-decoration: none;
+    color: #272727;
+}
+
+.login-dkdn a:hover {
+    opacity: 0.75;
+    color: #a73340;
+}
+
+.login-dkdn .gender input {
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 0 32px;
+}

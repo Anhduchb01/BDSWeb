@@ -1,0 +1,37 @@
+{% extends "homepage/timkiem.html" %}
+{% block row1 %}
+
+
+{% if dsbaidang %}                   
+    {% for item in dsbaidang%}
+    <div class="col-lg-4">
+        <div class="trainer-item">
+            <div class="image-thumb">
+                
+                <img id ="image-item" src="{{ item.img }}" alt="">
+                
+            </div>
+            <div class="down-content">
+                <span>
+                        <sup> </sup> 
+                </span>
+
+                <h4>{{ item.nhu_cau }}</h4>
+
+                <p>&nbsp;  {{ item.nhu_cau }} &nbsp;-&nbsp;{{ item.tinh_tp }} &nbsp;</p>
+                <p>&nbsp;  {{ item.chuyen_muc }} </p>
+                <p>&nbsp;  {{ item.dien_tich }} &nbsp;  {{ item.gia }}</p>
+                <p>&nbsp;  {{ item.id_baidang }} </p>
+
+                <ul class="social-icons">
+                    <li><a style="color:blue" href="">+ Xem chi tiết</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock row1 %}
+
+
+    

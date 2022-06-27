@@ -1,0 +1,5 @@
+//templates/city_dropdown_list_options.html
+<option value="" disabled selected>Quận / Huyện</option>
+{% for quanhuyen in listquanhuyen %}
+<option value="{{ quanhuyen.maqh }}">{{ quanhuyen.name }}</option>
+{% endfor %}

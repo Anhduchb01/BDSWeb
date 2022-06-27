@@ -1,0 +1,371 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+
+{% block cssblock %}
+
+ 
+{% endblock cssblock %}
+
+div.s_dist
+{% block content %}
+<section class="section section-bg" id="call-to-action" style="background-image: url(../../static/homepage/images/banner-image-1-1920x500.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <br>
+                        <br>
+                        <h2>Nền tảng <em>Bất động sản</em></h2>
+                        <p>Tìm kiếm bất động sản nhanh, đẹp, hiệu quả</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ <!-- ***** Fleet Starts ***** -->
+    <section class="section" id="trainers">
+        <div class="container">
+            
+            <br>
+            <br>
+
+            <div class="contact-form" name="contact-form" id="contact-form"  data-quanhuyen-url="{% url 'ajax_load_quanhuyen' %}" search-url = "{% url 'loadtimkiem' %}">
+                <form action="{% url 'loadtimkiem' %}" id="contact" method="get"  >
+                    
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Mua bán/Cho thuê:</label>
+                                <select name="nhu_cau" id="nhu_cau">
+                                    <option value="0" disabled selected>Mua bán/Cho thuê</option>
+                                    <option value="">Mua bán</option>
+                                    <option value="">Cho thuê</option>
+                                </select>
+                                 
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Loại hình bất động sản:</label>
+                     
+                                <select name="chuyen_muc" id= "chuyen_muc">
+                                    
+                                    
+                                        <option value="0" >Loại hình Bất động sản</option>
+                                        <option value="Phòng trọ, nhà trọ">Phòng trọ, nhà trọ</option>
+                                        <option value="Đất trang trại">Đất trang trại</option>
+                                        <option value="Đất thổ cư">Đất thổ cư</option>
+                                        <option value="Nhà mặt phố">Nhà mặt phố</option>
+                                        <option value="Đất nền dự án">Đất nền dự án</option>
+                                        <option value="Nhà biệt thự, Liền kề">Nhà biệt thự, Liền kề</option>
+                                        <option value="Căn hộ chung cư">Căn hộ chung cư</option>
+                                        <option value="Khách sạn, Nhà hàng, Resort">Khách sạn, Nhà hàng, Resort</option>
+                                        <option value="Đất dịch vụ, đền bù">Đất dịch vụ, đền bù</option>
+                                        <option value="Mặt bằng, Nhà Xưởng, Kho bãi">Mặt bằng, Nhà Xưởng, Kho bãi</option>
+                                        <option value="Văn phòng, TTTM, Cửa hàng, Kiot">Văn phòng, TTTM, Cửa hàng, Kiot</option>
+
+                                        <option value="20">Bất động sản khác</option>
+                                    
+                                 </select>
+                                 
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label> Mức Giá:</label>
+                     
+                                <select name="gia" id="gia">
+                                    <option value="0" >Mức giá</option>
+                                    <option value="1">&lt;500 triệu</option>
+                                    <option value="2">500 - 800 triệu</option>
+                                    <option value="3">800 triệu - 1 tỷ</option>
+                                    <option value="4">1 - 2 tỷ</option>
+                                    <option value="5">2 - 3 tỷ</option>
+                                    <option value="6">3 - 5 tỷ</option>
+                                    <option value="7">5 - 8 tỷ</option>
+                                    <option value="8">8 - 10 tỷ</option>
+                                    <option value="9">10 - 20 tỷ</option>
+                                    <option value="10">20 - 30 tỷ</option>
+                                    <option value="11">&gt;30 tỷ</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Diện tích:</label>
+                     
+                                <select name="dien_tich" id="dien_tich">
+                                    <option value="0">Diện tích</option>
+                                    <option value="30">&lt;30 m2</option>
+                                    <option value="50">30-50 m2</option>
+                                    <option value="80">50-80 m2</option>
+                                    <option value="100">80-100 m2</option>
+                                    <option value="150">100-150 m2</option>
+                                    <option value="200">150-200 m2</option>
+                                    <option value="250">200-250 m2</option>
+                                    <option value="300">250-300 m2</option>
+                                    <option value="500">300-500 m2</option>
+                                    <option value="1000">&gt;500 m2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Tỉnh / Thành phố:</label>
+                     
+                                <select name="s_province_id" id="s_province_id">
+
+                                    <option value="0" >Tỉnh / Thành phố</option>
+                                    
+                                    {% if dstinhtp %}
+                                        {% for tinhtp in dstinhtp %}
+                                        <option value="{{tinhtp.matp}}">{{tinhtp.name}}</option>
+
+                                        {% endfor %}
+                                    {% endif%}
+
+                                    
+
+                                    <option value=> 
+                                    </option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Quận / Huyện:</label>
+                     
+                                <select class="s_district_id" name="s_district_id" id="s_district_id"
+                                    title="Hãy chọn tỉnh/thành phố trước">
+                                        <option value="0" >Quận / Huyện</option>
+                                        {% if dsquanhuyen != "" %}
+                                            {% for quanhuyen in dsquanhuyen %}
+                                                <option value="{{quanhuyen.maqh}}">{{quanhuyen.name}}</option>
+                                            {% endfor %}
+
+                                        
+                                        {%endif%}
+
+                                </select>
+                            </div>
+                        </div>
+                        {%if chuyen_muc%}
+                            <script>
+                            var options = document.getElementById("chuyen_muc").options;
+                            for (var i = 0; i < options.length; i++) {
+                            if (options[i].text == "{{chuyen_muc}}") {
+                                options[i].selected = true;
+                                break;
+                            }
+                            }
+                            </script>
+                        {%endif%}
+                        {%if gia%}
+                            <script>
+                            var options = document.getElementById("gia").options;
+                            for (var i = 0; i < options.length; i++) {
+                            if (options[i].value == "{{gia}}") {
+                                options[i].selected = true;
+                                break;
+                            }
+                            }
+                            </script>
+                        {%endif%}
+                        {%if tinh_tp%}
+                            <script>
+                            var options = document.getElementById("s_province_id").options;
+                            for (var i = 0; i < options.length; i++) {
+                            if (options[i].value == "{{tinh_tp}}") {
+                                options[i].selected = true;
+                                break;
+                            }
+                            }
+                            </script>
+                        {%endif%}
+                         {%if quan_huyen%}
+                            <script>
+                            var options = document.getElementById("s_district_id").options;
+                            for (var i = 0; i < options.length; i++) {
+                            if (options[i].value == "{{quan_huyen}}") {
+                                options[i].selected = true;
+                                break;
+                            }
+                            }
+                            </script>
+                        {%endif%}
+                        {%if dien_tich%}
+                            <script>
+                            var options = document.getElementById("dien_tich").options;
+                            for (var i = 0; i < options.length; i++) {
+                            if (options[i].value == "{{dien_tich}}") {
+                                options[i].selected = true;
+                                break;
+                            }
+                            }
+                            </script>
+                        {%endif%}
+
+                        
+                    </div>
+                    
+                    <div class="col-sm-4 offset-sm-4">
+                      <div class="main-button text-center">
+                          <button  name="btnSearch" id ="btnSearch" >Tìm Kiếm</button>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                </form>
+            </div>
+            <div class="row" id="row1" name= "row1">
+                    {% if dsbaidang %}                   
+                        {% for item in dsbaidang%}
+                        <div class="col-lg-4">
+                            <div class="trainer-item">
+                                <div class="image-thumb">
+                                    
+                                    <img id ="image-item" src="{{ item.img }}" alt="">
+                                    
+                                </div>
+                                <div class="down-content">
+                                    <span>
+                                            <sup> </sup> 
+                                    </span>
+
+                                    <h4>{{ item.nhu_cau }} ở {{item.tinh_tp}}</h4>
+
+                                    <p>&nbsp;  {{ item.nhu_cau }} &nbsp;-&nbsp;{{ item.tinh_tp }} &nbsp;</p>
+                                    <p>&nbsp;  {{ item.chuyen_muc }} </p>
+                                    <p>&nbsp;  {{ item.dien_tich }} &nbsp;  {{ item.gia }}</p>
+                                    
+
+                                    <ul class="social-icons">
+                                        <li><a style="color:blue" href="{% url 'baidang' id=item.id_baidang %}">+ Xem chi tiết</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {%else%}
+                            <div >Không có bài đăng</div>
+                    {% endif %}
+            </div>
+
+            <br>
+                
+            <nav>
+            
+            <ul class="pagination pagination-lg justify-content-center">
+                {%  if dsbaidang.has_previous %}
+                    <li class="page-item" href="?page={{ dsbaidang.previous_page_number }}">
+                    <a class="page-link" href="?page={{ dsbaidang.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="?page={{ dsbaidang.previous_page_number }}&chuyen_muc={{chuyen_muc}}&gia={{gia}}&dien_tich={{dien_tich}}&s_province_id={{tinh_tp}}&s_district_id={{quan_huyen}}">{{ dsbaidang.previous_page_number }}</a></li>
+                {%endif%}
+                
+                <li class="page-item"><a class="page-link" href="#">{{dsbaidang.number}}</a></li>
+                
+                {%  if dsbaidang.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ dsbaidang.next_page_number}}&chuyen_muc={{chuyen_muc}}&gia={{gia}}&dien_tich={{dien_tich}}&s_province_id={{tinh_tp}}&s_district_id={{quan_huyen}}">{{ dsbaidang.next_page_number }}</a></li>
+                    <li class="page-item" href="?page={{ dsbaidang.next_page_number }}">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        </li>
+                {%endif%}
+              </ul>
+            </nav>
+
+        </div>
+    </section>
+    {% endblock content %}
+    {% block jsblock %}
+<script src="{% static 'homepage/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'homepage/js/popper.js' %}"></script>
+    <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'homepage/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'homepage/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'homepage/js/imgfix.min.js' %}"></script> 
+    <script src="{% static 'homepage/js/mixitup.js' %}"></script> 
+    <script src="{% static 'homepage/js/accordions.js' %}"></script>
+    
+    <!-- Global Init -->
+    <script src="{% static 'homepage/js/custom.js' %}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $("#s_province_id").change(function () {
+        var url = $("#contact-form").attr("data-quanhuyen-url");
+        var province_id = $(this).val();
+    
+
+        $.ajax({
+            url: url,
+            data: {
+            'province_id': province_id
+            },
+            success: function (data) {
+            $("#s_district_id").html(data);
+            }
+        });
+    
+        });
+    })
+    </script>
+    {% comment %} <script>
+    $(document).ready(function() {
+        $("#btnSearch").on("click", function(){
+              
+              var chuyen_muc = $("#chuyen_muc").val()
+              var nhu_cau = $("#nhu_cau").val()
+              var gia = $("#gia").val()  
+              var dien_tich = $("#dien_tich").val()
+              var province_id = $("#s_province_id").val()
+              var district_id = $("#s_district_id").val()
+              var url = $("#contact-form").attr("search-url");
+              alert(chuyen_muc)
+              $.ajax({
+                    type : 'GET',
+                    url: url,
+                    data: {
+                    'chuyen_muc': chuyen_muc,
+                    'nhu_cau': nhu_cau,
+                    'gia': gia,
+                    'dien_tich': dien_tich,
+                    'province_id': province_id,
+                    'district_id' :district_id,
+
+
+                    },
+                    
+                    success: function (data) {
+                     $("#row1").html(data);
+                    
+                    }
+        });
+
+             
+
+
+        })
+    })
+    </script> {% endcomment %}
+    {% endblock jsblock %}
+    <!-- jQuery -->
+

@@ -1,0 +1,232 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+
+{% block cssblock %}
+
+ 
+{% endblock cssblock %}
+<!-- ***** Preloader Start ***** -->
+{% block content %}
+    
+
+    
+    <!-- ***** Preloader End ***** -->
+
+    
+    <!-- ***** Call to Action Start ***** -->
+    <section class="section section-bg" id="call-to-action" style="background-image: url(../../static/homepage/images/banner-image-1-1920x500.jpg)">
+        <div class="container">
+            {% if dsbaidang %}
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <br>
+                        <br>
+                        <h2> <em>Cần bán  {{dsbaidang.chuyen_muc}}  ở  {{dsbaidang.tinh_tp }}</em></h2>
+                        <p>&nbsp; {{dsbaidang.chuyen_muc}} &nbsp;-&nbsp; {{dsbaidang.tinh_tp}} &nbsp;</p>
+                        <p>&nbsp;  {{dsbaidang.dien_tich}}/&nbsp;  {{dsbaidang.gia}}</p>
+                    </div>
+                </div>
+            {% endif%}
+            </div>
+        </div>
+    </section>
+    <!-- ***** Call to Action End ***** -->
+   
+    <!-- ***** Fleet Starts ***** -->
+    <section class="section" id="trainers">
+            {% if dsbaidang %}
+            
+            <div class="container">
+              <div class="image-baidang">
+                                    
+                  <img id ="image-baidang1" src="{{dsbaidang.img}}" alt="">
+                                    
+              </div>
+            
+               
+            
+              <div class="row1" id="tabs">
+                <div class="col-lg-4">
+                  <ul>
+                    <li><a href='#tabs-1'><i class="fa fa-cog"></i> Thông tin</a></li>
+                    <li><a href='#tabs-2'><i class="fa fa-info-circle"></i> Mô tả</a></li>
+                    <li><a href='#tabs-3'><i class="fa fa-phone"></i> Người đăng</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-8">
+                  <section class='tabs-content' style="width: 100%;">
+                    <article id='tabs-1'>
+                      <h4>Thông tin</h4>
+
+                      <div class="row">
+                      <div class="col-sm-6">
+                            <label>{{dsbaidang.nhu_cau}}</label>
+                                              
+                            
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Loại hình bất động sản</label>
+                                              
+                            <p>{{dsbaidang.chuyen_muc}}</p>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <label>Giá</label>
+                                              
+                            <p>{{dsbaidang.gia}}</p>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <label>Diện tích</label>
+                                              
+                            <p>{{dsbaidang.dien_tich}}</p>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <label>Tỉnh / Thành phố</label>
+                                              
+                            <p>{{dsbaidang.tinh_tp}}</p>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <label>Quận / Huyện</label>
+                                              
+                            <p>{{dsbaidang.quan_huyen}}</p>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <label>Tình trạng pháp lý</label>
+                                              
+                            <p>{{dsbaidang.tt_phap_ly}}</p>
+                        </div>
+                        
+                        
+                      </div>
+                    </article>
+
+                    <article id='tabs-2'>
+                      <h4>Mô tả</h4>
+                      
+                      <p>{{dsbaidang.mo_ta}}</p> 
+                      
+                      
+                    </article>
+
+                    <article id='tabs-3'>
+                      <h4>Liên hệ người đăng</h4>
+
+                      <div class="row">   
+                          <div class="col-sm-6">
+                              <label>Tên</label>
+
+                              <p>{{dsbaidang.nguoidang}}</p>
+                          </div>
+                          <div class="col-sm-6">
+                              <label>Số điện thoại</label>
+
+                              <p> {{dsbaidang.sdt}}</p>
+                          </div>
+                          
+                          <div class="col-sm-6">
+                              <label>Số like</label>
+                              <p></p>
+                          </div>
+                      </div>
+
+                      <img src="assets/images/map.jpg" class="img-fluid" alt="">
+                    </article>
+                  </section>
+                </div>
+              {%endif%}
+              </div>
+        </div>
+    </section>
+    <!-- ***** Fleet Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Enquiry</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="contact-us">
+            <div class="contact-form">
+              <form action="#" id="contact">
+                  <div class="row">
+                       <div class="col-md-6">
+                          <fieldset>
+                            <input type="text" class="form-control" placeholder="Enter full name" required="">
+                          </fieldset>
+                       </div>
+
+                       <div class="col-md-6">
+                          <fieldset>
+                            <input type="text" class="form-control" placeholder="Enter email address" required="">
+                          </fieldset>
+                       </div>
+                  </div>
+
+                  <div class="row">
+                       <div class="col-md-6">
+                          <fieldset>
+                            <input type="text" class="form-control" placeholder="Enter phone" required="">
+                          </fieldset>
+                       </div>
+
+                       <div class="col-md-6">
+                          <div class="row">
+                             <div class="col-md-6">
+                                <fieldset>
+                                  <input type="text" class="form-control" placeholder="From date" required="">
+                                </fieldset>
+                             </div>
+
+                             <div class="col-md-6">
+                                <fieldset>
+                                  <input type="text" class="form-control" placeholder="To date" required="">
+                                </fieldset>
+                             </div>
+                          </div>
+                       </div>
+                  </div>
+              </form>
+           </div>
+           </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Send Request</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
+    {% block jsblock %}
+    <script src="{% static 'homepage/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'homepage/js/popper.js' %}"></script>
+    <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'homepage/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'homepage/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'homepage/js/imgfix.min.js' %}"></script> 
+    <script src="{% static 'homepage/js/mixitup.js' %}"></script> 
+    <script src="{% static 'homepage/js/accordions.js' %}"></script>
+    
+    <!-- Global Init -->
+    <script src="{% static 'homepage/js/custom.js' %}"></script>
+
+    <script>
+   {% endblock jsblock %}
