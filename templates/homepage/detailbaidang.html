@@ -1,6 +1,7 @@
 {% extends "homepage/base.html" %}
 {% load static %}
 
+
 {% block cssblock %}
 
  
@@ -40,7 +41,7 @@
             <div class="container">
               <div class="image-baidang">
                                     
-                  <img id ="image-baidang1" src="{{dsbaidang.img}}" alt="">
+                  <img id ="image-baidang1" src="/images/{{  dsbaidang.img }}" alt="">
                                     
               </div>
             
@@ -100,6 +101,17 @@
                                               
                             <p>{{dsbaidang.tt_phap_ly}}</p>
                         </div>
+                        {% if user.DoesNotExist %}
+                          {%ifnotequal daluuchua "roi" %}
+                          <div class="col-sm-6">
+                              <button type="button" id='btnluu' name='btnluu' class="btnluu btn btn-outline-primary">Lưu bài đăng</button>
+                          </div>
+                          {%else%}
+                            <div class="col-sm-6">
+                              <button disabled type="button" id='btnluu' name='btnluu' class="btnluu btn btn-outline-primary">Đã lưu</button>
+                          </div>
+                          {%endifnotequal%} 
+                        {%endif%}
                         
                         
                       </div>
@@ -109,6 +121,7 @@
                       <h4>Mô tả</h4>
                       
                       <p>{{dsbaidang.mo_ta}}</p> 
+                      <a href = "{{dsbaidang.link}}">Nguồn : {{dsbaidang.link}}</a> 
                       
                       
                     </article>
@@ -118,6 +131,9 @@
 
                       <div class="row">   
                           <div class="col-sm-6">
+                              {% if user.DoesNotExist%}
+                              <input type="hidden" id="id_nguoidang" name="id_nguoidang" url = "{% url 'updatestar' %}" url_luu ="{% url 'luubaidang' %}" user_name ={{user.username}}  id_baidang="{{dsbaidang.id_baidang}}"value="{{dsbaidang.id_nguoidang}}" required="required">
+                              {%endif%}
                               <label>Tên</label>
 
                               <p>{{dsbaidang.nguoidang}}</p>
@@ -129,12 +145,38 @@
                           </div>
                           
                           <div class="col-sm-6">
-                              <label>Số like</label>
-                              <p></p>
+                              <label>Uy tín : </label>
+                              <input type="hidden" id="selected_rating" name="selected_rating"data_origin="{{dsbaidang.so_like}}" value="{{so_like}}" required="required">
+                              <span class="selected-rating">{{so_like}}</span><small> / 5</small>
+                              <div>
+                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </button>
+                              </div>
+                              {% if user.DoesNotExist %}
+                              <div style="padding-top: 25px">
+                                <button type="button" name='btnvote' id = 'btnvote' class="btnvote btn btn-outline-warning">Vote</button>
+                                
+                              </div>
+                              {% endif %}
+
                           </div>
+                          
                       </div>
 
-                      <img src="assets/images/map.jpg" class="img-fluid" alt="">
+                      <img src="" class="img-fluid" alt="">
                     </article>
                   </section>
                 </div>
@@ -227,6 +269,109 @@
     
     <!-- Global Init -->
     <script src="{% static 'homepage/js/custom.js' %}"></script>
+    
+    <script >
+      
+       var origin_value =$("#selected_rating").val();
+        for (i = 1; i <= origin_value; ++i) {
+            $("#rating-star-"+i).toggleClass('btn-warning');
+            $("#rating-star-"+i).toggleClass('btn-default');
+            }
 
-    <script>
+    </script>
+    <script >
+      $(document).ready(function($){
+	    
+        $(".btnvote").on('click',(function(e) {
+          var value = $("#selected_rating").val();
+          var id_nguoidang = $('#id_nguoidang').val();      
+          var url = $('#id_nguoidang').attr("url");
+          this.innerText='Đã vote';
+          this.disabled = true;
+          
+
+          
+          $.ajax({
+            url: url,
+            
+            data: {
+
+            'value': value,
+            'id_nguoidang': id_nguoidang,
+            },
+            
+            success: function () {
+              console.log('Đã gửi');
+            
+            }
+        
+        });
+        }))
+      })
+    </script>
+    <script >
+      $(document).ready(function($){
+	    
+        $(".btnrating").on('click',(function(e) {
+          
+          var previous_value = $("#selected_rating").val();
+          
+
+          var selected_value = $(this).attr("data-attr");
+          $("#selected_rating").val(selected_value);
+          
+          $(".selected-rating").empty();
+          $(".selected-rating").html(selected_value);
+          
+          for (i = 1; i <= selected_value; ++i) {
+            $("#rating-star-"+i).toggleClass('btn-warning');
+            $("#rating-star-"+i).toggleClass('btn-default');
+            }
+            
+            for (ix = 1; ix <= previous_value; ++ix) {
+              $("#rating-star-"+ix).toggleClass('btn-warning');
+              $("#rating-star-"+ix).toggleClass('btn-default');
+              }
+              
+              
+          
+    
+        }));
+          
+            
+        });
+        
+        
+    </script>
+     <script >
+      $(document).ready(function($){
+	    
+        $(".btnluu").on('click',(function(e) {
+          var user_name = $('#id_nguoidang').attr("user_name"); 
+          var id_baidang = $('#id_nguoidang').attr("id_baidang");    
+          var url = $('#id_nguoidang').attr("url_luu");
+          this.innerText='Đã lưu';
+          this.disabled = true;
+          
+
+          
+          $.ajax({
+            url: url,
+            
+            data: {
+
+            'user_name': user_name,
+            'id_baidang': id_baidang,
+            },
+            
+            success: function () {
+              console.log('Đã lưu');
+            
+            }
+        
+        });
+        }))
+      })
+    </script>
+    
    {% endblock jsblock %}

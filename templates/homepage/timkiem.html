@@ -6,7 +6,7 @@
  
 {% endblock cssblock %}
 
-div.s_dist
+
 {% block content %}
 <section class="section section-bg" id="call-to-action" style="background-image: url(../../static/homepage/images/banner-image-1-1920x500.jpg)">
         <div class="container">
@@ -231,7 +231,7 @@ div.s_dist
                             <div class="trainer-item">
                                 <div class="image-thumb">
                                     
-                                    <img id ="image-item" src="{{ item.img }}" alt="">
+                                    <img id ="image-item" src="/images/{{  item.img }}" alt="">
                                     
                                 </div>
                                 <div class="down-content">
@@ -239,7 +239,7 @@ div.s_dist
                                             <sup> </sup> 
                                     </span>
 
-                                    <h4>{{ item.nhu_cau }} ở {{item.tinh_tp}}</h4>
+                                    <h4>{{ item.title }} </h4>
 
                                     <p>&nbsp;  {{ item.nhu_cau }} &nbsp;-&nbsp;{{ item.tinh_tp }} &nbsp;</p>
                                     <p>&nbsp;  {{ item.chuyen_muc }} </p>

@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import HomeView,TimKiem,load_quanhuyen,LoadTimKiem,Baidang,GetAllAPIBaidang
+from .views import HomeView,TimKiem,load_quanhuyen,LoadTimKiem,Baidang,GetAllAPIBaidang, luubaidang,updatestar,daluu
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
@@ -14,6 +14,8 @@ urlpatterns = [
     path('dangky',views.dangky, name="dangky"),  
     path('dangxuat',views.dangxuat, name="dangxuat"),
     path('<int:id>',Baidang.as_view(), name="baidang"),
-    path('Getbaidang/',GetAllAPIBaidang.as_view())
-    
-    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+    path('Getbaidang/',GetAllAPIBaidang.as_view()),
+    path('updatestar',views.updatestar,name='updatestar'),
+    path('daluu/<str:username>',daluu.as_view(),name='daluu'),
+    path('luubaidang',views.luubaidang,name='luubaidang')
+]

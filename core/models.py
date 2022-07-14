@@ -1,21 +1,33 @@
 from distutils.command.upload import upload
 from django.db import models
 
-
+class Daluu(models.Model):
+    id = models.AutoField(primary_key=True)
+    id_baidang = models.IntegerField(blank=True, null=False)
+    username = models.CharField(max_length=150,blank=True, null=False, db_collation='utf8_general_ci')
+    class Meta:
+        managed = False
+        db_table = 'daluu'
+    
 class Nguoidang(models.Model):
     id_nguoidang = models.IntegerField(primary_key=True)
     nguoi_dang = models.TextField(blank=True, null=True)
     sdt = models.TextField(blank=True, null=True)
-    so_like = models.IntegerField()
+    so_like = models.FloatField(blank=True, null=True)
+    so_vote = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'nguoidang'
+    def __str__(self) -> str:
+        return str(self.nguoi_dang) +"--"+ str(self.sdt)
 # Create your models here.
 class Data(models.Model):
     
     id_baidang = models.IntegerField(primary_key=True)
     nhu_cau = models.TextField(blank=True, null=True)
+    link = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
     chuyen_muc = models.TextField(blank=True, null=True)
     tinh_tp = models.TextField(blank=True, null=True)
     quan_huyen = models.TextField(blank=True, null=True)
@@ -25,10 +37,10 @@ class Data(models.Model):
     gia_tien = models.FloatField(blank=True, null=True)
     donvi_gia = models.TextField(blank=True, null=True)
     dien_tich = models.TextField(blank=True, null=True)
-    dien_tich1 = models.FloatField()
+    dien_tich1 = models.FloatField(blank=True, null=True)
     mo_ta = models.TextField(blank=True, null=True)
     id_nguoidang = models.IntegerField(blank=True, null=True)
-    img = models.ImageField(blank=True, null=True,upload_to ="baidang/")
+    img = models.ImageField(blank=True, null=True,upload_to ="baidang")
 
     class Meta:
         managed = False

@@ -52,7 +52,7 @@
                                 <div class="trainer-item">
                                     <div class="image-thumb">
                                         
-                                        <img id ="image-item" src="{{ item.img }}" alt="">
+                                        <img id ="image-item" src="/images/{{  item.img }}" alt="{{  item.img.url }}">
                                        
                                     </div>
                                     <div class="down-content">
@@ -60,14 +60,16 @@
                                                 <sup> </sup> 
                                         </span>
 
-                                        <h4>{{ item.nhu_cau }}</h4>
+                                        <h4>{{ item.title }}</h4>
+                                        
 
                                         <p>&nbsp;  {{ item.nhu_cau }} &nbsp;-&nbsp;{{ item.tinh_tp }} &nbsp;</p>
                                         <p>&nbsp;  {{ item.dien_tich }} &nbsp;  {{ item.gia }}</p>
                                         
 
                                         <ul class="social-icons">
-                                            <li><a style="color:blue" href="{% url 'baidang' id=item.id_baidang %}">+ Xem chi tiết</a></li>
+                                        
+                                            <li><a style="color:blue" href="{% url 'baidang' id=item.id_baidang  %}">+ Xem chi tiết</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -115,7 +117,7 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading">
-                        <h2>Sinh viên <em></em></h2>
+                        <h2>Contributor <em></em></h2>
                         <img src="{% static 'homepage/images/line-dec.png' %}" alt="waves">
                         <p></p>
                     </div>
@@ -124,11 +126,12 @@
                     <ul class="features-items">
                         <li class="feature-item">
                             <div class="left-icon">
-                                <img src="{% static 'homepage/images/features-first-icon.png'%}" alt="First One">
+                                <img src="{% static 'homepage/images/features-first-icon.png'%}" alt="fourth muscle">
                             </div>
                             <div class="right-content">
                                 <h4>Bùi Anh Đức</h4>
                                 <p><em>MSSV : 20194426 ---  Lớp : DS&AI K64</em></p>
+                                <a href="https://www.facebook.com/profile.php?id=100016881766698"> Contact </a>
                                 
                             </div>
                         </li>
@@ -144,6 +147,7 @@
                             <div class="right-content">
                                 <h4>Hà Vũ Thành Đạt</h4>
                                 <p><em>MSSV : 20194422  --- Lớp : DS&AI K64</em></p>
+                                <a href="https://www.facebook.com/brownyeyez"> Contact</a>
                             </div>
                         </li>
                         

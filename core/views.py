@@ -1,12 +1,15 @@
 
 import random
+from unicodedata import decimal
+from django.http import JsonResponse
 
 from django.shortcuts import render,HttpResponse,redirect 
 from django.views import View
 from requests import request
 from sympy import N
-from .models import Data,DevvnTinhthanhpho,DevvnQuanhuyen,Nguoidang
-from django.contrib.auth import authenticate,login,logout
+from .models import Data,DevvnTinhthanhpho,DevvnQuanhuyen,Nguoidang,Daluu
+from django.contrib.auth import authenticate,login,logout,decorators
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
@@ -15,6 +18,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import GetAllBaidang
+
+from django.conf import settings
 
 
 # Create your views here.
@@ -28,7 +33,7 @@ class HomeView(View):
         list_baidang_index = list(Data.objects.exclude(img__isnull=True).exclude(img__exact=''))
 
         random_baidang_index = random.sample(list_baidang_index, 3)
-        context_index = {'dsbaidang': random_baidang_index}
+        context_index = {'dsbaidang': random_baidang_index,'media_url':settings.MEDIA_URL}
         return render(request,'homepage/index.html',context_index)
 class TimKiem(View):
     def get(self, request):
@@ -43,7 +48,21 @@ class load_quanhuyen(View):
         province_id = request.GET.get('province_id')
         listquanhuyen = DevvnQuanhuyen.objects.filter(matp=province_id)
         return render(request, 'homepage/quanhuyen_dropdown_list_options.html', {'listquanhuyen': listquanhuyen})
-       
+class daluu(View):
+    def get(self,request,username):
+        
+        
+        listid_baidang = Daluu.objects.filter(username=username).values('id_baidang')
+        listbaidang1 = Data.objects.filter(id_baidang__in=listid_baidang)
+        p = Paginator(listbaidang1, 9)
+        page = request.GET.get('page')
+        
+        venues = p.get_page(page)
+        context = {'dsbaidang': venues}
+        
+        return render(request,'homepage/daluu.html',context)
+
+              
 class LoadTimKiem(View):
     def get(self,request):
         chuyenmuc = request.GET.get('chuyen_muc')
@@ -167,30 +186,21 @@ class LoadTimKiem(View):
 class Baidang(View):
     def get(self,request,id):
         id_baidang = id
-        list_baidang1 = Data.objects.all().extra(select={'nguoidang': 'nguoidang.nguoi_dang','sdt':'nguoidang.sdt'},
+        user1= request.user.username
+       
+        list_baidang1 = Data.objects.all().extra(select={'nguoidang': 'nguoidang.nguoi_dang','sdt':'nguoidang.sdt','so_like':'nguoidang.so_like','id_nguoidang':'nguoidang.id_nguoidang'},
     tables=['nguoidang'],
     where=['Data.id_nguoidang=nguoidang.id_nguoidang'])
         list_baidang = list_baidang1.get(id_baidang=id_baidang)
-        context ={'dsbaidang':list_baidang,}
+        so_like = round(list_baidang.so_like)
+        if  Daluu.objects.filter(id_baidang=id_baidang,username=user1).exists():
+            daluuchua ="roi"
+        else :
+            daluuchua = "chua"
+        
+        context ={'dsbaidang':list_baidang,'so_like':so_like,'daluuchua':daluuchua}
         return render(request,'homepage/detailbaidang.html',context)
-def dangky(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for ' + user)
-
-                return redirect('login')
-            
-
-        context = {'form':form}
-        return render(request, 'homepage/dangky.html', context)
-
+    
 def dangnhap(request):
     if request.user.is_authenticated:
         return redirect('index')
@@ -213,6 +223,59 @@ def dangnhap(request):
 def dangxuat(request):
     logout(request)
     return redirect('index')
+       
+        
+def dangky(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        form = CreateUserForm()
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'Account was created for ' + user)
+
+                return redirect('login')
+        context = {'form':form}
+        return render(request, 'homepage/dangky.html', context)
+
+def updatestar(request):
+    
+        
+    data = {'response': ''}
+
+    selected_star = request.GET.get('value')
+    id_nguoidang = request.GET.get('id_nguoidang')
+            
+    nguoidang = Nguoidang.objects.get(id_nguoidang=id_nguoidang)
+            
+    pre_so_like = nguoidang.so_like
+    pre_so_vote = nguoidang.so_vote
+    nguoidang.so_vote = pre_so_vote +1
+    new_like = (float(pre_so_like)*float(pre_so_vote) + float(selected_star))/(float(pre_so_vote) + 1 )
+    nguoidang.so_like =new_like 
+    nguoidang.save()
+    data['response'] = 'Record updated!' 
+    return  JsonResponse(data)
+def luubaidang(request):
+    
+        data = {'response': ''}
+        username= request.GET.get('user_name')
+        id_baidang= request.GET.get('id_baidang')
+        if Daluu.objects.filter(username=username,id_baidang=id_baidang).exists():
+            pass
+        else:
+            Daluu.objects.create(username=username,id_baidang=id_baidang)
+            data['response'] = 'Record updated!' 
+            return  JsonResponse(data)
+
+            
+
+        
+
+
 
 
 

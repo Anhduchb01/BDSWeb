@@ -33,11 +33,10 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
                               
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="">About Us</a>
-                                    <a class="dropdown-item" href="">Team</a>
-                                    <a class="dropdown-item" href="">Blog</a>
-                                    <a class="dropdown-item" href="">Testimonials</a>
-                                    <a class="dropdown-item" href="">Terms</a>
+                                    {% if user.DoesNotExist%}
+                                        <a href="{% url 'daluu' username=user.username  %}"  class="dropdown-item" href="">Đã lưu</a>
+                                    {% endif %} 
+                                    
                                 </div>
                             </li>
                                
