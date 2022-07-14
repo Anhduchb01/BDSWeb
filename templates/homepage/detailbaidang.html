@@ -102,16 +102,16 @@
                             <p>{{dsbaidang.tt_phap_ly}}</p>
                         </div>
                         {% if user.DoesNotExist %}
-                          {%ifnotequal daluuchua "roi" %}
-                          <div class="col-sm-6">
-                              <button type="button" id='btnluu' name='btnluu' class="btnluu btn btn-outline-primary">Lưu bài đăng</button>
-                          </div>
-                          {%else%}
+                            {% if not daluuchua %}
                             <div class="col-sm-6">
-                              <button disabled type="button" id='btnluu' name='btnluu' class="btnluu btn btn-outline-primary">Đã lưu</button>
-                          </div>
-                          {%endifnotequal%} 
-                        {%endif%}
+                                <button type="button" id='btnluu' name='btnluu' class="btnluu btn btn-outline-primary">Lưu bài đăng</button>
+                            </div>
+                            {% else %}
+                              <div class="col-sm-6">
+                                <button disabled type="button" id='btnluu' name='btnluu' class="btnluu btn btn-outline-primary">Đã lưu</button>
+                            </div>
+                            {% endif %} 
+                        {% endif %}
                         
                         
                       </div>

@@ -1,5 +1,6 @@
-from attr import field
 from rest_framework import serializers
+
+
 from .models import Data
 class GetAllBaidang(serializers.ModelSerializer):
     class Meta:

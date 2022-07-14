@@ -194,9 +194,9 @@ class Baidang(View):
         list_baidang = list_baidang1.get(id_baidang=id_baidang)
         so_like = round(list_baidang.so_like)
         if  Daluu.objects.filter(id_baidang=id_baidang,username=user1).exists():
-            daluuchua ="roi"
+            daluuchua =True
         else :
-            daluuchua = "chua"
+            daluuchua = False
         
         context ={'dsbaidang':list_baidang,'so_like':so_like,'daluuchua':daluuchua}
         return render(request,'homepage/detailbaidang.html',context)
