@@ -1,5 +1,3 @@
-# Deployed Real Estate Server 
-
 # Real Estate Website setting at local
 Clone repository
 ```
