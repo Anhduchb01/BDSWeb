@@ -45,6 +45,7 @@ https://www.apachefriends.org/download.html
 Install and run XamPPControl.
 
 ![image](https://user-images.githubusercontent.com/73813209/179924699-8c786308-cb64-42d8-b67d-75c2be2d03b5.png)
+
 Running two servers: MySQL Database and Apache Web Server. Then, go to following link.
 ```
 http://localhost/phpmyadmin
