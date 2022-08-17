@@ -35,9 +35,9 @@ brew services start mysql
 ```
 https://drive.google.com/drive/folders/1wcWnIX7KKhMz7A3as68t6oRIA41imSZO?usp=sharing
 ```
-Then, create new folder Image at `BDSWeb/` then move Image folder to `BDSWeb/Image`
+Then, create new folder Image at `BDSWeb/` then move Image folder to `BDSWeb/images`
 
-Result example: `BDSWeb/Image/baidang`
+Result example: `BDSWeb/images/baidang`
 ### Download XamPP 
 ```
 https://www.apachefriends.org/download.html
