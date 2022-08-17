@@ -34,8 +34,13 @@ brew services start mysql
 ### Download Image folder & Data base on the following link 
 ```
 https://drive.google.com/drive/folders/1wcWnIX7KKhMz7A3as68t6oRIA41imSZO?usp=sharing
-https://drive.google.com/drive/folders/1dGFCD7Hw0-KuODM3o5RTji7niIs1dcdg?usp=sharing
+
 ```
+```
+https://drive.google.com/drive/folders/1wcWnIX7KKhMz7A3as68t6oRIA41imSZO?usp=sharing
+
+```
+
 Then, create new folder Image at `BDSWeb/` then move Image folder to `BDSWeb/images`
 
 Result example: `BDSWeb/images/baidang`
